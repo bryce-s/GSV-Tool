@@ -43,6 +43,7 @@ std::pair<int,int> GSV::readFromInputFile() {
     }
     inFile >> width >> height >> numVertices;
     assert(width > 0 && height > 0 && numVertices > 0);
+    vertices.resize(static_cast<size_t>(numVertices));
     int vertexID, delimiter, xPos, yPos{0};
 
     for (int i{0}; i < numVertices; i++) {
