@@ -9,6 +9,10 @@
 #include "Vertex.h"
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <sstream>
 
 class GSV {
 
@@ -24,6 +28,8 @@ public:
     //      this goes in GSV* so the RenderWindow is in scope with our data from the input file.
     //      also, returns int as exit code to main.
     int initWindow();
+
+    std::pair<int, int> readFromInputFile();
 
 };
 
