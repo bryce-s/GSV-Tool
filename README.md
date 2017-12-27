@@ -11,6 +11,7 @@ numVertexes
 x y
 ... (include numVertexes pairs..)
 x y
+--- (a delimiter of some kind)
 vertexNumber | firstAdjacentVertex secondAdjacentVertex ... 
 ...
 vertexNumber | firstAdjacentVertex secondAdjacentVertex
@@ -29,6 +30,7 @@ Here's a specific example:
 7 | 600 400
 8 | 550 420
 9 | 590 921
+---
 0 | 1 2
 1 | 0 3 6 9
 2 | 0 3 4
