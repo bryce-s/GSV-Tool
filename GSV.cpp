@@ -8,10 +8,16 @@
 
 int GSV::mainLoop(sf::RenderWindow &window) {
     while (true) {
+        window.clear(sf::Color::Black);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
             return 0;
         }
-        window.clear(sf::Color::Black);
+
+        for (auto& eachVertex : vertices) {
+            window.draw(eachVertex.getShape());
+        }
+
+
         window.display();
     }
     return 1; //not reachable

@@ -28,3 +28,7 @@ void Vertex::loadAdjacencyList(const std::vector<int> &list_in) {
     adjacencyList = list_in;
 }
 
+sf::CircleShape &Vertex::getShape() {
+    return vertex;
+}
+
