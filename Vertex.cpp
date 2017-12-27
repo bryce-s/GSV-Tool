@@ -20,3 +20,11 @@ Vertex::Vertex(const int x_in, const int y_in) {
     vertex.setOrigin(float{8}, float{8});
 }
 
+Vertex::Vertex(const Vertex &vertex_in) {
+    vertex = vertex_in.vertex;
+}
+
+void Vertex::loadAdjacencyList(const std::vector<int> &list_in) {
+    adjacencyList = list_in;
+}
+

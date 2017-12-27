@@ -4,7 +4,7 @@
 
 #include "GSV.h"
 
-using namespace sf;
+//no SF namespace, since vertex is also a SF library object
 
 int GSV::mainLoop(sf::RenderWindow &window) {
     while (true) {
@@ -18,14 +18,14 @@ int GSV::mainLoop(sf::RenderWindow &window) {
 }
 
 int GSV::initWindow() {
-    constexpr int windowWidth{800};
-    constexpr int windowHeight{600};
-
+    auto widthHeight = readFromInputFile();
+    const unsigned int windowWidth = static_cast<unsigned int>(widthHeight.first);
+    const unsigned int windowHeight = static_cast<unsigned int>(widthHeight.second);
     sf::RenderWindow window({windowWidth,windowHeight,32}, "Graph Search Visualizer");
     window.setFramerateLimit(60);
 
     while (window.isOpen()){
-        Event event;
+        sf::Event event;
         while (window.pollEvent(event)) { //constant rendering of window.
             return mainLoop(window);
         }
@@ -44,11 +44,11 @@ std::pair<int,int> GSV::readFromInputFile() {
     inFile >> width >> height >> numVertices;
     assert(width > 0 && height > 0 && numVertices > 0);
     vertices.resize(static_cast<size_t>(numVertices));
-    int vertexID, delimiter, xPos, yPos{0};
-
+    int vertexID, xPos, yPos{0};
+    char delimiter;
     for (int i{0}; i < numVertices; i++) {
         inFile >> vertexID >> delimiter >> xPos >> yPos;
-        //load pos
+        loadVertexPosition(static_cast<size_t>(vertexID), xPos, yPos);
     }
     std::string currentLine;
     std::getline(inFile, currentLine); //we capture the separator line
@@ -62,7 +62,17 @@ std::pair<int,int> GSV::readFromInputFile() {
             assert(vertexConnection >= 0);
             adjList.push_back(vertexConnection);
         }
-        //load adj list
+        loadAdjacencyList(static_cast<size_t>(vertexID), adjList);
     }
     return {width,height};
+}
+
+void GSV::loadVertexPosition(size_t index, int x_in, int y_in) {
+    assert(vertices.size() > index);
+    vertices[index] = Vertex{x_in, y_in}; //since it's presized we'll just copy it over.
+}
+
+void GSV::loadAdjacencyList(size_t index, std::vector<int>& adjacencyList) {
+    assert(vertices.size() > index);
+    vertices[index].loadAdjacencyList(adjacencyList);
 }

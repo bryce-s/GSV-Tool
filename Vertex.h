@@ -8,16 +8,21 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <cassert>
+#include <vector>
 
 class Vertex {
 
     sf::CircleShape vertex;
+    std::vector<int> adjacencyList;
 
 public:
-
+    Vertex(){};
     Vertex(int x_in, int y_in);
+    Vertex(const Vertex& vertex_in);
     void setColor();
     const sf::Vector2f& getPosition();
+    void loadAdjacencyList(const std::vector<int>& list_in);
+
 
 };
 

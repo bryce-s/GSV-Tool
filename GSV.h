@@ -20,6 +20,15 @@ class GSV {
 
     //returns int as exit code to main.
     int mainLoop(sf::RenderWindow& window);
+
+    //requires: vertices.size() < index
+    //inits the vertex and its position
+    void loadVertexPosition(size_t index, int x_in, int y_in);
+
+    //requires: vertices.size() < index
+    //inits the adj list at vertex[index]
+    void loadAdjacencyList(size_t index, std::vector<int>& adjacencyList);
+
 public:
 
 
