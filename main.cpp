@@ -25,7 +25,7 @@ int main() {
     sf::RenderWindow window({windowWidth,windowHeight,32}, "Graph Search Visualizer");
     window.setFramerateLimit(60);
 
-    while(window.isOpen()){
+    while (window.isOpen()){
         Event event;
         while (window.pollEvent(event)) { //constant rendering of window.
             return mainLoop(settings, window);
