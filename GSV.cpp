@@ -3,6 +3,7 @@
 //
 
 #include "GSV.h"
+#include "ConnectionLine.h"
 
 //no SF namespace, since vertex is also a SF library object
 
@@ -16,6 +17,13 @@ int GSV::mainLoop(sf::RenderWindow &window) {
         for (auto& eachVertex : vertices) {
             window.draw(eachVertex.getShape());
         }
+
+        sf::VertexArray lines(sf::LinesStrip, 4);
+        lines[0].position = sf::Vector2f(10, 0);
+        lines[1].position = sf::Vector2f(100, 300);
+        lines[2].position = sf::Vector2f(30, 5);
+        lines[3].position = sf::Vector2f(40, 2);
+        window.draw(lines);
 
 
         window.display();

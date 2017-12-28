@@ -13,6 +13,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include "ConnectionLine.h"
+
 
 class GSV {
 
