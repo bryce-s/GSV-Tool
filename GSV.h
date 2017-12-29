@@ -42,6 +42,8 @@ public:
 
     std::pair<int, int> readFromInputFile();
 
+    void renderLines(sf::RenderWindow &window, std::vector<ConnectionLine> &lines);
+
 };
 
 

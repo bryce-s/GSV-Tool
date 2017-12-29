@@ -15,6 +15,7 @@ class Vertex {
 
     std::vector<int> adjacencyList;
     sf::CircleShape vertex;
+
 public:
 
     Vertex(){};
@@ -30,6 +31,8 @@ public:
     void loadAdjacencyList(const std::vector<int>& list_in);
 
     sf::CircleShape& getShape();
+
+    std::vector<int>& getAdjList();
 
 
 };

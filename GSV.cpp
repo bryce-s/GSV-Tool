@@ -8,22 +8,21 @@
 //no SF namespace, since vertex is also a SF library object
 
 int GSV::mainLoop(sf::RenderWindow &window) {
+    std::vector<ConnectionLine> lines;
+
+
     while (true) {
         window.clear(sf::Color::Black);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
             return 0;
         }
-
+        renderLines(window, lines);
         for (auto& eachVertex : vertices) {
             window.draw(eachVertex.getShape());
         }
 
-        sf::VertexArray lines(sf::LinesStrip, 4);
-        lines[0].position = sf::Vector2f(10, 0);
-        lines[1].position = sf::Vector2f(100, 300);
-        lines[2].position = sf::Vector2f(30, 5);
-        lines[3].position = sf::Vector2f(40, 2);
-        window.draw(lines);
+
+
 
 
         window.display();
@@ -90,3 +89,17 @@ void GSV::loadAdjacencyList(size_t index, std::vector<int>& adjacencyList) {
     assert(vertices.size() > index);
     vertices[index].loadAdjacencyList(adjacencyList);
 }
+
+void GSV::renderLines(sf::RenderWindow &window, std::vector<ConnectionLine> &lines) {
+    for (auto& eachVertex : vertices) {
+        auto& vertexPosition = eachVertex.getPosition();
+        auto& adjList = eachVertex.getAdjList();
+        for (auto eachIndex : adjList) { //o(Vertexes * total adjacency (a large complexity))
+            auto& eachAdjVertex = vertices[eachIndex].getPosition();
+            ConnectionLine thisLine(vertexPosition.x, vertexPosition.y, eachAdjVertex.x, eachAdjVertex.y);
+            thisLine.renderLines(window);
+        }
+    }
+}
+
+

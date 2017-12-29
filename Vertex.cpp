@@ -32,3 +32,7 @@ sf::CircleShape &Vertex::getShape() {
     return vertex;
 }
 
+std::vector<int> &Vertex::getAdjList() {
+    return adjacencyList;
+}
+
