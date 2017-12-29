@@ -36,3 +36,11 @@ std::vector<int> &Vertex::getAdjList() {
     return adjacencyList;
 }
 
+bool Vertex::isVisited() {
+    return isVisited();
+}
+
+void Vertex::setVisited() {
+    visited = true;
+}
+

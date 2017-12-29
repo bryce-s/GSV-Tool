@@ -9,14 +9,14 @@
 
 int GSV::mainLoop(sf::RenderWindow &window) {
     std::vector<ConnectionLine> lines;
-
+    sf::Clock clock;
 
     while (true) {
         window.clear(sf::Color::Black);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
             return 0;
         }
-        renderLines(window, lines);
+        renderLines(window, lines); //O(V*E)
         for (auto& eachVertex : vertices) {
             window.draw(eachVertex.getShape());
         }

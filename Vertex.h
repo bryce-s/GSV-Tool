@@ -15,6 +15,7 @@ class Vertex {
 
     std::vector<int> adjacencyList;
     sf::CircleShape vertex;
+    bool visited{false};
 
 public:
 
@@ -33,6 +34,12 @@ public:
     sf::CircleShape& getShape();
 
     std::vector<int>& getAdjList();
+
+    bool isVisited();
+
+    void setVisited();
+
+
 
 
 };
