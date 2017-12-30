@@ -6,15 +6,13 @@
 #define GSV_TOOL_DFS_H
 
 #include <vector>
-#include <Vertex.h>
 #include "Vertex.h"
 #include <stack>
 
-class DFS {
-
-public:
-    static DFS(std::vector<Vertex>& vert) {
+template<class GSV>
+    static int DFS_(std::vector<Vertex> &vert, GSV &mainGSV, sf::RenderWindow &window) {
         std::stack<unsigned int> vertexStack;
+        std::vector<ConnectionLine> lines;
         vertexStack.push(0);
         vert[0].setVisited();
         while (!vertexStack.empty()) {
@@ -22,14 +20,18 @@ public:
             vertexStack.pop();
             for (auto eachChild : vert[currentVertex].getAdjList()) {
                 if (!vert[eachChild].isVisited()) {
-
-                } else {
+                    mainGSV.runDisplay(window, lines);
                     vert[eachChild].setVisited();
                     vertexStack.push(static_cast<unsigned int>(eachChild));
+                } else {
+
+                    mainGSV.runDisplay(window, lines);
+
+
                 }
             }
         }
+        return 0;
     }
-};
 
 #endif //GSV_TOOL_DFS_H

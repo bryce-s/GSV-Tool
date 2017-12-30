@@ -21,10 +21,6 @@ int GSV::mainLoop(sf::RenderWindow &window) {
             window.draw(eachVertex.getShape());
         }
 
-
-
-
-
         window.display();
     }
     return 1; //not reachable
@@ -40,7 +36,7 @@ int GSV::initWindow() {
     while (window.isOpen()){
         sf::Event event;
         while (window.pollEvent(event)) { //constant rendering of window.
-            return mainLoop(window);
+            return DFS_(vertices, *this, window);
         }
     }
     return 1;
@@ -100,6 +96,20 @@ void GSV::renderLines(sf::RenderWindow &window, std::vector<ConnectionLine> &lin
             thisLine.renderLines(window);
         }
     }
+}
+
+void GSV::runDisplay(sf::RenderWindow &window, std::vector<ConnectionLine>& lines) {
+    sf::Clock clock;
+
+    window.clear(sf::Color::Black);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
+        exit(0); //bad again
+    }
+    renderLines(window, lines); //O(V*E)
+    for (auto &eachVertex : vertices) {
+        window.draw(eachVertex.getShape());
+    }
+    window.display();
 }
 
 

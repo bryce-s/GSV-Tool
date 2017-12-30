@@ -37,10 +37,11 @@ std::vector<int> &Vertex::getAdjList() {
 }
 
 bool Vertex::isVisited() {
-    return isVisited();
+    return visited;
 }
 
 void Vertex::setVisited() {
     visited = true;
+    vertex.setFillColor(sf::Color::Blue);
 }
 

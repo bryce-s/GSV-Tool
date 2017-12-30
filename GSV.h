@@ -14,6 +14,7 @@
 #include <string>
 #include <sstream>
 #include "ConnectionLine.h"
+#include "DFS.h"
 
 
 class GSV {
@@ -22,6 +23,8 @@ class GSV {
 
     //returns int as exit code to main.
     int mainLoop(sf::RenderWindow& window);
+
+
 
     //requires: vertices.size() < index
     //inits the vertex and its position
@@ -44,6 +47,8 @@ public:
 
     void renderLines(sf::RenderWindow &window, std::vector<ConnectionLine> &lines);
 
+    //renders current state of edges/vertices
+    void runDisplay(sf::RenderWindow& window, std::vector<ConnectionLine>& lines);
 };
 
 
